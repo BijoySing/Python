@@ -1,4 +1,3 @@
-# main.py
 
 from user import BankAccount
 from admin import Admin
@@ -27,8 +26,7 @@ def user_menu(user_account, admin):
         elif choice == 4:
             user_account.show_transaction_history()
         elif choice == 5:
-            amount = float(input("Enter loan amount: "))
-            user_account.take_loan(amount)
+            user_account.take_loan(admin)
         elif choice == 6:
             recipient_account_number = int(input("Enter recipient account number: "))
             recipient_account = None
@@ -72,17 +70,23 @@ def admin_menu(admin):
         elif choice == 5:
             admin.check_total_loans()
         elif choice == 6:
-            admin.toggle_loan_feature()
+            print("1. Enable")
+            print("2. Disable")
+            status = int(input("Enter status: "))
+            if status == 1:
+                admin.toggle_loan_feature(True)
+            elif status == 2:
+                admin.toggle_loan_feature(False)
         elif choice == 7:
             break
         else:
             print("Invalid choice! Please try again.")
 
-# Main Program
 if __name__ == "__main__":
     admin = Admin()
-    admin.create_account("Joy", "joy@email.com", "Address1", "Savings")
-    admin.create_account("Ajoy", "ajoy@email.com", "Address2", "Current")
+    admin.create_account("Joy", "joy@email.com", "Dhaka", "Savings")
+    admin.create_account("Ajoy", "ajoy@email.com", "Sylhet", "Current")
+
 
     while True:
         print("\nMain Menu:")

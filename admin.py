@@ -1,4 +1,3 @@
-# admin.py
 
 from user import BankAccount
 
@@ -7,7 +6,8 @@ class Admin:
         self.users = []
         self.bank_balance = 0
         self.total_loans = 0
-        self.loan_feature_enabled = True
+        self.loan_feature_enabled = False
+
 
     def create_account(self, name, email, address, account_type):
         user = BankAccount(name, email, address, account_type)
@@ -43,7 +43,9 @@ class Admin:
         print(f"Total loan amount: {total_loans}")
         return total_loans
 
-    def toggle_loan_feature(self):
-        self.loan_feature_enabled = not self.loan_feature_enabled
-        status = "enabled" if self.loan_feature_enabled else "disabled"
-        print(f"Loan feature is now {status}.")
+    def toggle_loan_feature(self, status):
+        self.loan_feature_enabled = status        
+        if status:
+            print("Loan feature enabled.")
+        else:
+            print("Loan feature disabled.")

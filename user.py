@@ -36,16 +36,17 @@ class BankAccount:
             for transaction in self.transaction_history:
                 print(transaction)
         else:
-            print("No transactions made yet.")
+            print("No transactions available.")
 
-    def take_loan(self, amount):
-        if self.loan_taken < 2:
+    def take_loan(self, admin):
+        if not admin.loan_feature_enabled:
+            print("Error: Loan feature is disabled by admin.")
+        else:
+            amount = float(input("Enter loan amount: "))
             self.loan_taken += amount
             self.balance += amount
             self.transaction_history.append(f"Loan Taken: {amount}")
             print(f"Loan of {amount} taken. New balance: {self.balance}")
-        else:
-            print("Error: Loan limit exceeded. You can take a loan at most twice.")
 
     def transfer(self, amount, recipient_account):
         if amount > self.balance:
